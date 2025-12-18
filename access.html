@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="OUSIA — Access" />
+  <title>OUSIA — Access</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="page--access">
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Topbar (same as mechanism.html) -->
+  <header class="topbar topbar--mech">
+    <div class="wrap topbar__inner topbar__inner--minimal">
+      <a class="brand" href="index.html" aria-label="Go to Home">
+        <img class="brand__logo" src="assets/img/logo_color4.png" alt="OUSIA" />
+      </a>
+
+      <nav class="nav nav--minimal nav--mech" aria-label="Primary">
+        <a href="vision.html">Vision</a>
+        <a href="mechanism.html">Mechanism</a>
+        <a href="team.html">Team</a>
+        <a href="access.html" aria-current="page">Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="access">
+      <div class="wrap access__grid">
+
+        <!-- Left copy -->
+        <div class="access__copy">
+          <p class="access__eyebrow">Get in touch</p>
+
+          <h1 class="access__headline">
+            Whether you're interested in our <span class="accent">science</span>,
+            exploring <span class="accent">partnership opportunities</span>,
+            or considering <span class="accent">joining</span> our team
+          </h1>
+
+          <p class="access__subline">
+            Please reach out.
+          </p>
+        </div>
+
+        <!-- Right form -->
+        <div class="access__panel">
+          <form class="access__form" autocomplete="on" novalidate>
+            <label class="access__label" for="access-name">Name</label>
+            <input class="access__input" id="access-name" name="name" type="text" autocomplete="name" />
+
+            <label class="access__label" for="access-email">Email address</label>
+            <input class="access__input" id="access-email" name="email" type="email" autocomplete="email" />
+
+            <label class="access__label" for="access-org">Company or organization</label>
+            <input class="access__input" id="access-org" name="org" type="text" autocomplete="organization" />
+
+            <div class="access__spacer"></div>
+
+            <div class="access__label">Subject</div>
+            <div class="access__choices" role="group" aria-label="Subject options">
+              <button type="button" class="access__choice" data-choice="general">General inquiry</button>
+              <button type="button" class="access__choice" data-choice="collab">Collaboration opportunities</button>
+              <button type="button" class="access__choice" data-choice="invest">Investment interest</button>
+            </div>
+
+            <label class="access__label" for="access-msg">Leave a message</label>
+            <textarea class="access__textarea" id="access-msg" name="message" rows="6"></textarea>
+
+            <button class="access__send" type="button" id="access-send">
+              Send
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (same as mechanism.html) -->
+  <footer class="footer footer--mech">
+    <div class="wrap footer__inner">
+      <div class="footer__left">
+        <span>© OUSIA</span><br>
+        <div class="ig-block ig-block--mech">
+          <span class="ig-label">Official Instagram:</span>
+          <a href="instagram.html" aria-label="Open Instagram QR page">
+            <img
+              src="assets/img/instagram-qr.png"
+              alt="OUSIA Official Instagram QR Code"
+              class="ig-qr"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__right">
+        <nav class="footer__links footer__links--mech" aria-label="Footer">
+          <a href="vision.html">Vision</a>
+          <a href="mechanism.html">Mechanism</a>
+          <a href="team.html">Team</a>
+          <a href="access.html">Access</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Front-end only interaction =====
+    (function () {
+      const nameEl  = document.getElementById('access-name');
+      const emailEl = document.getElementById('access-email');
+      const orgEl   = document.getElementById('access-org');
+      const msgEl   = document.getElementById('access-msg');
+      const sendBtn = document.getElementById('access-send');
+      const choiceBtns = Array.from(document.querySelectorAll('.access__choice'));
+
+      // memory-only stash (no localStorage, no logs)
+      let lastSubmission = null;
+
+      // Toggle subject buttons independently
+      choiceBtns.forEach(btn => {
+        btn.addEventListener('click', () => btn.classList.toggle('is-active'));
+      });
+
+      function missingFields() {
+        const missing = [];
+        if (!nameEl.value.trim())  missing.push('Name');
+        if (!emailEl.value.trim()) missing.push('Email address');
+        if (!orgEl.value.trim())   missing.push('Company or organization');
+        if (!msgEl.value.trim())   missing.push('Leave a message');
+        return missing;
+      }
+
+      function resetChoices() {
+        choiceBtns.forEach(b => b.classList.remove('is-active'));
+      }
+
+      sendBtn.addEventListener('click', () => {
+        const missing = missingFields();
+        if (missing.length) {
+          alert('Please fill in: ' + missing.join(', ') + '.');
+          return;
+        }
+
+        // stash (in memory only)
+        lastSubmission = {
+          name: nameEl.value.trim(),
+          email: emailEl.value.trim(),
+          org: orgEl.value.trim(),
+          message: msgEl.value.trim(),
+          subjects: choiceBtns
+            .filter(b => b.classList.contains('is-active'))
+            .map(b => b.textContent.trim()),
+          ts: Date.now(),
+        };
+
+        // clear inputs + reset buttons
+        nameEl.value = '';
+        emailEl.value = '';
+        orgEl.value = '';
+        msgEl.value = '';
+        resetChoices();
+
+        alert(
+          'Dear ' + lastSubmission.name +
+          ', thank you for reaching out.\n' +
+          'Our team will get back to you in 2 business days.'
+        );
+      });
+    })();
+  </script>
+</body>
+</html>

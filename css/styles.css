@@ -1201,3 +1201,163 @@ body.page--person #main {
   text-decoration: underline;
 }
 .page--person .person__brand--white{ color:#fff; opacity: .92; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Access page
+   ========================= */
+.page--access{
+  background: #f2f2f2;
+}
+
+.access{
+  padding: 64px 0 88px;
+}
+
+.access__grid{
+  display: grid;
+  grid-template-columns: 1.1fr 1.6fr;
+  gap: 56px;
+  align-items: start;
+}
+
+.access__h1{
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #111;
+}
+
+.access__panel{
+  background: transparent;
+}
+
+.access__form{
+  display: grid;
+  gap: 14px;
+}
+
+.access__label{
+  font-size: 14px;
+  color: #111;
+  margin-top: 10px;
+}
+
+.access__input,
+.access__textarea{
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.45);
+  background: transparent;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.access__textarea{
+  resize: vertical;
+  min-height: 140px;
+}
+
+.access__spacer{
+  height: 12px;
+}
+
+.access__choices{
+  display: grid;
+  gap: 10px;
+}
+
+.access__choice{
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #cfcfcf;
+  color: #111;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.access__choice.is-active{
+  background: #111;
+  color: #fff;
+}
+
+.access__send{
+  margin-top: 8px;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 16px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 960px){
+  .access__grid{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+
+
+
+/* ===== Access left copy refinement ===== */
+
+.access__copy{
+  max-width: 520px;
+}
+
+.access__eyebrow{
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6f6f6f;
+  margin: 0 0 14px 0;
+}
+
+.access__headline{
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px 0;
+  color: #111;
+}
+
+.access__subline{
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6f6f6f;
+  margin: 0;
+}
+/* Access: subject toggle state */
+.access__choice.is-active{
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
