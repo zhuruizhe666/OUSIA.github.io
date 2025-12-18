@@ -67,7 +67,7 @@
   --white:#ffffff;
   --charcoal:#1E1E1E;
   --sea-green:#00DE93;
-  --sub-green:#57d6ac;
+  --sub-green:#2ea07a;
 
   --bg: var(--off-white);
   --bg2: rgba(173,191,199,0.18);
@@ -809,3 +809,395 @@ img{ max-width:100%; display:block; }
   .mech-spot__grid--reverse{ grid-template-columns: 1fr; }
   .sim-frame{ height: 980px; }
 }
+
+
+/* =========================
+   TEAM PAGE (3 per row + circle)
+   Paste at end of styles.css
+   ========================= */
+
+.page--team .team-hero { padding: 64px 0 24px; }
+.page--team .team-h1 { font-size: clamp(36px, 4vw, 56px); line-height: 1.05; margin: 0 0 10px; }
+.page--team .team-lead { font-size: 18px; margin: 0; opacity: .72; }
+
+.page--team .team-grid { padding: 24px 0 80px; }
+.page--team .team-grid__inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 56px 48px;
+  align-items: start;
+}
+
+@media (max-width: 980px) {
+  .page--team .team-grid__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 28px; }
+}
+@media (max-width: 620px) {
+  .page--team .team-grid__inner { grid-template-columns: 1fr; gap: 34px; }
+}
+
+.page--team .team-card {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px 8px 10px;
+  border-radius: 18px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.page--team .team-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(0,0,0,.10);
+}
+
+.page--team .team-avatar {
+  width: 176px;
+  height: 176px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 4px solid rgba(0,0,0,.88);
+  background: #f2f4f4;
+}
+
+.page--team .team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* 竖图会自动裁成圆 */
+  object-position: center;    /* 默认取中间 */
+  display: block;
+}
+
+.page--team .team-meta { margin-top: 16px; }
+.page--team .team-name { font-size: 18px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+.page--team .team-role { font-size: 13px; margin: 8px 0 0; opacity: .68; line-height: 1.35; }
+
+
+
+
+
+
+
+/* ================================
+   PERSON PAGE (poster layout)
+   Scope: only pages with body.page--person
+   ================================ */
+
+body.page--person #main {
+  background: #fff;
+}
+
+.page--person .person {
+  min-height: calc(100vh - 120px);
+  padding: 0;
+}
+
+.page--person .person__grid {
+  display: grid;
+  grid-template-columns: minmax(520px, 58vw) 1fr;
+  min-height: calc(100vh - 120px);
+}
+
+.page--person .person__media {
+  position: relative;
+  overflow: hidden;
+  background: #f4f6f7;
+}
+
+.page--person .person__media img {
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 120px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.page--person .person__panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(28px, 4vw, 56px);
+  background: #fff;
+}
+
+.page--person .person__slab {
+  position: absolute;
+  inset: auto 10% 12% 8%;
+  height: 64%;
+  border-radius: 22px;
+  background: rgba(116, 173, 160, 0.16); /* sea-green tint */
+  transform: translate(10px, 10px);
+}
+
+.page--person .person__card {
+  position: relative;
+  width: min(520px, 92%);
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.10);
+  padding: 34px 34px 26px;
+  z-index: 2;
+}
+
+.page--person .person__quote {
+  font-size: 88px;
+  line-height: 0.9;
+  font-weight: 800;
+  color: rgba(116, 173, 160, 0.55);
+  margin: -10px 0 10px;
+}
+
+.page--person .person__name {
+  font-size: 34px;
+  line-height: 1.1;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.page--person .person__role {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.55);
+}
+
+.page--person .person__divider {
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 18px 0 18px;
+}
+
+.page--person .person__tagline {
+  margin: 0 0 18px;
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.page--person .person__brandrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.page--person .person__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: rgb(116, 173, 160);
+}
+
+.page--person .person__brand {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.65);
+}
+
+.page--person .person__back {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.60);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  padding-bottom: 2px;
+}
+
+.page--person .person__back:hover {
+  color: rgba(0,0,0,0.85);
+  border-bottom-color: rgba(116, 173, 160, 0.65);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .page--person .person__grid {
+    grid-template-columns: 1fr;
+  }
+  .page--person .person__media img {
+    min-height: 56vh;
+  }
+  .page--person .person__slab {
+    inset: auto 8% 8% 8%;
+    height: 70%;
+  }
+}
+
+
+
+
+/* ================================
+   Refinement: Elegance & Breathing
+   ================================ */
+
+/* 1. Give the whole composition breathing room */
+.page--person .person {
+  padding: clamp(24px, 4vw, 56px);
+}
+
+/* 2. Constrain left image area (no hard edge bleed) */
+.page--person .person__grid {
+  grid-template-columns: minmax(360px, 44vw) 1fr;
+  gap: clamp(40px, 7vw, 120px);
+}
+
+/* 3. Turn left side into a calm gallery canvas */
+.page--person .person__media {
+  padding: clamp(32px, 4vw, 64px);
+  background: #f6f8f9;
+  border-radius: 32px;
+}
+
+/* 4. Image no longer fills container aggressively */
+.page--person .person__media img {
+  max-height: 64vh;
+  width: auto;
+  max-width: 100%;
+}
+/* 5. Slightly pull card inward for elegance */
+.page--person .person__panel {
+  padding-right: clamp(48px, 8vw, 120px);
+}
+
+/* 6. Soften the slab so it feels intentional, not loud */
+.page--person .person__slab {
+  background: rgba(116, 173, 160, 0.08);
+}
+
+
+
+
+
+
+
+
+
+/* ===== Person page refined (only affects body.page--person) ===== */
+
+.page--person .person--refined{
+  padding: clamp(22px, 4vw, 44px) 0;
+}
+
+/* Keep layout elegant: use existing .wrap width, add breathing room */
+.page--person .person--refined .person__grid{
+  gap: clamp(18px, 3vw, 44px);
+  align-items: center;
+}
+
+/* Left image: smaller + more margin, avoid “too big” */
+.page--person .person--refined .person__media{
+  padding: clamp(10px, 2vw, 18px);
+}
+
+.page--person .person--refined .person__media img{
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border-radius: 14px;
+}
+
+/* Right panel: relative for slab/card layering */
+.page--person .person--refined .person__panel{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 520px;
+  padding: clamp(10px, 2vw, 18px);
+}
+
+/* d: slab = sub-green */
+.page--person .person--refined .person__slab{
+  position: absolute;
+  inset: 0;
+  background: var(--sub-green);
+  border-radius: 28px;
+  opacity: 1;
+}
+
+/* m: card = black */
+.page--person .person--refined .person__card--dark{
+  position: relative;
+  background: #0b0f10;
+  color: #ffffff;
+  border-radius: 18px;
+  width: min(520px, 92%);
+  padding: clamp(22px, 3vw, 32px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.18);
+}
+
+/* Remove old quote if any CSS still shows it */
+.page--person .person__quote{ display: none !important; }
+
+/* Logo at top-right of card */
+.page--person .person--refined .person__card-logo{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: auto;
+  opacity: .95;
+}
+
+/* Typography: white */
+.page--person .person--refined .person__name{
+  /* margin: 0 0 8px 0; */
+  margin: 100px 0 8px 0; 
+  font-size: clamp(22px, 2.2vw, 30px);
+  letter-spacing: -0.02em;
+}
+
+.page--person .person--refined .person__role{
+  margin: 0 0 18px 0;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .78;
+}
+
+.page--person .person--refined .person__divider{
+  height: 1px;
+  background: rgba(255,255,255,.12);
+  margin: 18px 0;
+}
+
+/* Alumni line: sea-green */
+.page--person .person__tagline--sea{
+  color: var(--sea-green);
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* Brand row + back */
+.page--person .person--refined .person__brandrow{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  opacity: .85;
+}
+
+.page--person .person--refined .person__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.45);
+}
+
+.page--person .person--refined .person__back{
+  display: inline-block;
+  margin-top: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  opacity: .88;
+}
+
+.page--person .person--refined .person__back:hover{
+  text-decoration: underline;
+}
+.page--person .person__brand--white{ color:#fff; opacity: .92; }
