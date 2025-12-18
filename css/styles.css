@@ -67,6 +67,7 @@
   --white:#ffffff;
   --charcoal:#1E1E1E;
   --sea-green:#00DE93;
+  --sub-green:#57d6ac;
 
   --bg: var(--off-white);
   --bg2: rgba(173,191,199,0.18);
@@ -215,6 +216,7 @@ img{ max-width:100%; display:block; }
   margin-top: 10px;
 }
 .accent{ color: var(--sea-green); }
+.subaccent{ color: var(--sub-green); }
 
 /* ===== Home hero visual (soft transition) ===== */
 .frame--home{
@@ -431,4 +433,379 @@ img{ max-width:100%; display:block; }
   .vision-grid{ grid-template-columns: 1fr; }
   .vision-media{ max-width: 100%; justify-self: stretch; }
   .vision-full{ padding: 56px 0; }
+}
+
+
+
+/* =========================================================
+   STREAMLIT EMBED (MECHANISM)
+   ========================================================= */
+
+.st-embed{
+  position: relative;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.14);
+}
+
+.st-embed__frame{
+  width: 100%;
+  height: 96vh;          /* 更长：你要再长就改这里 */
+  min-height: 980px;     /* 防止大屏太矮 */
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+/* 盖掉 iframe 内部底部栏（Built with Streamlit / Fullscreen） */
+.st-embed__mask{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56px;          /* 还露出来就改 64px / 72px */
+  background: #000;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* mobile */
+@media (max-width: 900px){
+  .st-embed__frame{
+    height: 92vh;
+    min-height: 820px;
+  }
+}
+
+
+
+/* =========================================================
+   MECHANISM SKIN (ISOLATED, NO SIDE EFFECT)
+   ========================================================= */
+
+.page--mechanism{
+  background: var(--white);   /* 主体保持白色 */
+  color: var(--text);
+}
+
+/* Topbar: sea-green (Mechanism only) */
+.page--mechanism .topbar{
+  background: var(--sea-green);
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+}
+
+.page--mechanism .nav{
+  color: rgba(0,0,0,0.72);
+}
+
+.page--mechanism .nav a:hover{
+  background: rgba(255,255,255,0.25);
+  text-decoration: none;
+}
+
+/* Footer: sea-green (Mechanism only) */
+.page--mechanism .footer{
+  background: var(--sea-green);
+  border-top: 1px solid rgba(0,0,0,0.18);
+}
+
+.page--mechanism .footer,
+.page--mechanism .footer a,
+.page--mechanism .footer .muted{
+  color: rgba(0,0,0,0.80);
+}
+
+.page--mechanism .footer a:hover{
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+/* =========================================================
+   MECHANISM SKIN (DOES NOT AFFECT HOME / VISION)
+   ========================================================= */
+.page--mech{
+  background: var(--white);
+  color: var(--text);
+}
+
+/* Mechanism Topbar + Footer sea-green (page-local) */
+.topbar--mech{
+  background: var(--sea-green);
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.14);
+}
+.nav--mech{ color: rgba(0,0,0,0.72); }
+.nav--mech a:hover{
+  background: rgba(255,255,255,0.25);
+  text-decoration:none;
+}
+
+.footer--mech{
+  background: var(--sea-green);
+  border-top: 1px solid rgba(0,0,0,0.18);
+}
+.footer--mech .footer__left,
+.footer--mech .footer__right,
+.footer--mech a{
+  color: rgba(0,0,0,0.82);
+}
+.ig-block--mech{ color: rgba(0,0,0,0.72); }
+.footer__links--mech a:hover{ text-decoration: underline; }
+
+/* ===== Typography scale up (Mechanism only) ===== */
+.page--mech .mech-h1{
+  margin: 0 0 12px;
+  font-size: clamp(46px, 5.2vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+.page--mech .mech-h2{
+  margin: 0;
+  font-size: clamp(26px, 2.1vw, 34px);
+  letter-spacing: -0.02em;
+}
+.page--mech .mech-h3{
+  margin: 0 0 10px;
+  font-size: clamp(24px, 2.0vw, 30px);
+  letter-spacing: -0.02em;
+}
+.page--mech .mech-lead{
+  margin: 0 0 18px;
+  font-size: 20px;
+  line-height: 1.65;
+  color: rgba(30,30,30,0.72);
+  max-width: 62ch;
+}
+.page--mech .mech-sub,
+.page--mech .mech-p{
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(30,30,30,0.70);
+  max-width: 70ch;
+}
+.page--mech .mech-note{
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: rgba(30,30,30,0.55);
+}
+.mech-eyebrow{
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(30,30,30,0.55);
+}
+
+/* ===== Hero layout (not sandwich) ===== */
+.mech-hero{
+  padding: 78px 0 54px;
+  background: var(--white);
+}
+.mech-hero__grid{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 34px;
+  align-items: center;
+}
+.mech-hero__copy{ padding-right: 10px; }
+.mech-badges{
+  display:flex; flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.mech-badge{
+  display:inline-flex;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(30,30,30,0.14);
+  background: rgba(0,222,147,0.10);
+  color: rgba(30,30,30,0.78);
+  font-size: 14px;
+}
+
+/* Collage (designed, layered) */
+.mech-collage{
+  position: relative;
+  min-height: 420px;
+}
+.mech-shot{
+  margin:0;
+  border-radius: 22px;
+  overflow:hidden;
+  box-shadow: 0 18px 52px rgba(0,0,0,0.12);
+  background: #fff;
+}
+.mech-shot img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+.mech-shot--lg{
+  position:absolute;
+  inset: 0 0 0 8%;
+  height: 100%;
+}
+.mech-shot--sm{
+  position:absolute;
+  width: 48%;
+  height: 44%;
+  right: 0;
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.14);
+}
+.mech-shot--top{ top: 0; }
+.mech-shot--bottom{ bottom: 0; }
+
+/* ===== Feature strip (3 cards) ===== */
+.mech-strip{
+  padding: 22px 0 46px;
+}
+.mech-strip__grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.mech-card{
+  border-radius: 22px;
+  border: 1px solid rgba(30,30,30,0.10);
+  background: rgba(173,191,199,0.12);
+  padding: 18px 18px 16px;
+}
+.mech-card__head{
+  display:flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.mech-kicker{
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(30,30,30,0.55);
+}
+.mech-list{
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: rgba(30,30,30,0.68);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ===== Spotlight (offset slab like your reference) ===== */
+.mech-spot{
+  padding: 62px 0;
+}
+.mech-spot__grid{
+  display:grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 34px;
+  align-items: center;
+}
+.mech-spot__grid--reverse{
+  grid-template-columns: 1.05fr 0.95fr;
+}
+.mech-spot__copy{
+  max-width: 64ch;
+}
+.mech-mini{
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(30,30,30,0.48);
+}
+.mech-lines{ margin-top: 14px; }
+.mech-line{
+  margin: 0 0 6px;
+  padding-left: 12px;
+  border-left: 3px solid rgba(0,222,147,0.65);
+  color: rgba(30,30,30,0.72);
+  font-size: 16px;
+}
+
+/* Image with sea-green slab behind */
+.mech-spot__media{
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.14);
+}
+.mech-spot__media img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit: cover;
+}
+
+/* slabs */
+.mech-slab::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width: 72%;
+  height: 72%;
+  background: rgba(0,222,147,0.24);
+  border-radius: 28px;
+  filter: blur(0px);
+}
+.mech-slab--left::before{
+  left: -10%;
+  bottom: -12%;
+}
+.mech-slab--right::before{
+  right: -10%;
+  bottom: -12%;
+}
+.mech-spot--alt{
+  background: rgba(173,191,199,0.10);
+}
+
+/* ===== Simulation (big, finished) ===== */
+.mech-sim{
+  padding: 64px 0 74px;
+}
+.mech-sim__inner{
+  display:block;
+}
+.sim-shell{
+  margin-top: 16px;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(30,30,30,0.10);
+  box-shadow: 0 26px 72px rgba(0,0,0,0.12);
+  background: #0f1114;
+}
+.sim-frame{
+  display:block;
+  width: 100%;
+  height: 980px;              /* taller */
+  border: 0 !important;       /* remove iframe border */
+  background: transparent;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .mech-hero__grid{ grid-template-columns: 1fr; }
+  .mech-collage{ min-height: 520px; }
+  .mech-shot--lg{ inset: 0; position: relative; height: 320px; }
+  .mech-shot--sm{ position: relative; width: 100%; height: 220px; right:auto; }
+  .mech-shot--top{ margin-top: 12px; }
+  .mech-shot--bottom{ margin-top: 12px; }
+
+  .mech-strip__grid{ grid-template-columns: 1fr; }
+  .mech-spot__grid,
+  .mech-spot__grid--reverse{ grid-template-columns: 1fr; }
+  .sim-frame{ height: 980px; }
 }
