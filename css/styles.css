@@ -68,6 +68,7 @@
   --charcoal:#1E1E1E;
   --sea-green:#00DE93;
   --sub-green:#2ea07a;
+  --accent-green:#4C9A90;
 
   --bg: var(--off-white);
   --bg2: rgba(173,191,199,0.18);
@@ -681,11 +682,12 @@ img{ max-width:100%; display:block; }
   background: rgba(173,191,199,0.12);
   padding: 18px 18px 16px;
 }
-.mech-card__head{
-  display:flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+.page--mech .mech-card__head{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 6px;
   margin-bottom: 10px;
 }
 .mech-kicker{
@@ -694,6 +696,10 @@ img{ max-width:100%; display:block; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(30,30,30,0.55);
+}
+.page--mech .mech-kicker{
+  margin-top: 2px;
+  text-align: left;
 }
 .mech-list{
   margin: 10px 0 0;
